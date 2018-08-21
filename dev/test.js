@@ -21,11 +21,12 @@ const currentBlockData = [
   }
 ];
 
-const nonce = 100;
+const nonce = 103286;
 
 
-const result = bitcion.hashBlock(previousBlockHash, currentBlockData,nonce);
-console.log(result);
+//const result = bitcion.hashBlock(previousBlockHash, currentBlockData,nonce);
+const result_proof = bitcion.proofOfWork(previousBlockHash, currentBlockData);
+console.log(result_proof);
 
 /* Lv1
 //nonce, previousBlockHash, hash
