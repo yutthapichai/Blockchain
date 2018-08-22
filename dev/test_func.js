@@ -1,7 +1,7 @@
 const Blockchain = require('./blockchain');
 
 const bitcoin = new Blockchain();
-
+/*
 const previousBlockHash = 'sdasdsadsadsaad';
 const currentBlockData = [
   {
@@ -22,12 +22,18 @@ const currentBlockData = [
 ];
 
 const nonce = 103286;
-
+*/
 
 //const result = bitcoin.hashBlock(previousBlockHash, currentBlockData,nonce);
 //const result_proof = bitcoin.proofOfWork(previousBlockHash, currentBlockData);
+const transactions = bitcoin.createNewTransaction(1000,'yut_sender','boom_recipient')
+// create block for store transactions
+const block2 = bitcoin.createNewBlock(100,'prehash','curhash')
+// ckeck last block
 const lastblock = bitcoin.getLastBlock();
-console.log(lastblock['hash']);
+
+console.log(bitcoin);
+
 console.log(lastblock)
 
 /* Lv1
