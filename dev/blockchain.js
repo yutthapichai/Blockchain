@@ -1,9 +1,13 @@
 const sha256 = require('sha256');
-
+const currentNodeUrl = process.argv[3]
 //or function Blockcain(){}
 const Blockchain = function() {
-	this.chain =[];
-	this.pendingTransactions = [];
+	this.chain =[]
+	this.pendingTransactions = []
+
+	this.networkNodes = []
+	this.currentNodeUrl = currentNodeUrl
+
 	this.createNewBlock(100, '0', '0'); //default value
 }
 
