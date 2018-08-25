@@ -49,13 +49,12 @@ app.post('/transaction/broadcast', (req,res) => {
 })
 
 app.get('/mine', (req, res) => {
-  const lastBlock = bitcoin.getLastBlock()
-  const previousBlockHash = lastBlock['hash'] // is in function createnewblock
+  const lastBlock = bitcoin.getLastBlock() // get array[0] then print object
+  const previousBlockHash = lastBlock.hash //['0'] is in function createnewblock or lastBlock['hash']
   const currentBlockData = {
-    transaction: bitcoin.pendingTransactions,
-    index: lastBlock['index'] + 1
+    transactions: bitcoin.pendingTransactions,
+    index: lastBlock.index + 1
   }
-
   const nonce = bitcoin.proofOfWork(previousBlockHash, currentBlockData)
   const blockHash = bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce)
   const newBlock = bitcoin.createNewBlock(nonce, previousBlockHash, blockHash)
@@ -118,7 +117,7 @@ app.post('/receive-new-block', (req,res) => {
 
 // register a node and broadcast it the node
 app.post('/register-and-broadcast-node', (req, res) => {
-  const newNodeUrl = req.body.newNodeUrl // http://localhost:4002 each a link
+  const newNodeUrl = req.body.newNodeUrl //  http://localhost:4002 each a link
   if(bitcoin.networkNodes.indexOf(newNodeUrl) == -1) bitcoin.networkNodes.push(newNodeUrl)
 
   const regNodesPromises = []
